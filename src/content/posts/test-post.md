@@ -1,6 +1,6 @@
 ---
 title: 테스트 포스트
-date: 2024-04-15
+pubDate: 2024-04-15
 description: Git 푸시 테스트를 위한 포스트입니다.
 tags: [test, git]
 ---
