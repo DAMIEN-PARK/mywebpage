@@ -7,7 +7,7 @@ import vercel from '@astrojs/vercel/serverless';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://your-site.vercel.app',  // 배포 후 실제 URL로 변경해주세요
+  site: 'https://mywebpage-bay.vercel.app',  // Vercel 배포 URL
   integrations: [mdx(), sitemap(), tailwind()],
   output: 'server',  // Vercel의 서버리스 환경에 맞게 설정
   adapter: vercel(),
