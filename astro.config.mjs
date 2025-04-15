@@ -9,5 +9,12 @@ export default defineConfig({
   site: 'https://mywebpage-pink.vercel.app',
   output: 'server',
   adapter: vercel(),
-  integrations: [mdx(), tailwind()]
+  integrations: [mdx(), tailwind()],
+  markdown: {
+    syntaxHighlight: 'shiki',
+    shikiConfig: {
+      theme: 'github-dark',
+      langs: [],
+    },
+  },
 });

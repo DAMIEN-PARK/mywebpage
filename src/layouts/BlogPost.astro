@@ -13,34 +13,86 @@ const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
 ---
 
 <Layout>
-  <article class="prose prose-lg mx-auto px-4 py-8">
+  <article class="prose prose-lg dark:prose-invert mx-auto px-4 py-8">
     <div class="mb-8">
       <h1 class="text-4xl font-bold mb-2">{title}</h1>
-      {description && <p class="text-gray-600">{description}</p>}
-      <div class="text-sm text-gray-500">
+      {description && <p class="text-gray-600 dark:text-gray-400">{description}</p>}
+      <div class="flex items-center gap-4 text-sm text-gray-500 dark:text-gray-400 mt-4">
         <time datetime={pubDate.toISOString()}>
-          {pubDate.toLocaleDateString('ko-KR')}
+          {pubDate.toLocaleDateString('ko-KR', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+          })}
         </time>
         {updatedDate && (
           <span>
             · 수정됨: 
             <time datetime={updatedDate.toISOString()}>
-              {updatedDate.toLocaleDateString('ko-KR')}
+              {updatedDate.toLocaleDateString('ko-KR', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+              })}
             </time>
           </span>
         )}
       </div>
       {tags.length > 0 && (
-        <div class="flex gap-2 mt-2">
+        <div class="flex gap-2 mt-4">
           {tags.map(tag => (
-            <span class="bg-gray-100 px-2 py-1 rounded-full text-sm">
+            <a 
+              href={`/tags/${tag}`}
+              class="bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full text-sm hover:bg-gray-200 dark:hover:bg-gray-700"
+            >
               {tag}
-            </span>
+            </a>
           ))}
         </div>
       )}
     </div>
     <slot />
+
+    <!-- 작성자 프로필 -->
+    <div class="mt-16 pt-8 border-t border-gray-200 dark:border-gray-700">
+      <div class="flex items-center gap-6">
+        <img 
+          src="/profile.png" 
+          alt="프로필 이미지" 
+          class="w-24 h-24 rounded-full bg-purple-100"
+        />
+        <div>
+          <div class="flex items-center gap-2 mb-2">
+            <span class="font-bold text-xl">Written by</span>
+            <a href="/about" class="bg-purple-500 text-white px-3 py-1 rounded-md text-sm">@Author</a>
+          </div>
+          <p class="text-gray-600 dark:text-gray-400">
+            상상만 하고 있던 것을 어떻게든 구현하고 싶어하는 개발자입니다. 
+            무엇인가 만드는 행위 자체에 관심이 많으며, 프로그래밍을 누구나 즐길 수 있도록 
+            도와주는 멘토가 되고 싶은 바람을 갖고 있습니다.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- 관련 글 -->
+    <div class="mt-16">
+      <h2 class="text-2xl font-bold mb-4">'스토리 - 프로젝트'의 다른 글</h2>
+      <div class="space-y-4">
+        <a href="#" class="block p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex items-center justify-between">
+            <span>이전 글 제목</span>
+            <span class="text-gray-400">→</span>
+          </span>
+        </a>
+        <a href="#" class="block p-4 rounded-lg bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700">
+          <span class="flex items-center justify-between">
+            <span>다음 글 제목</span>
+            <span class="text-gray-400">→</span>
+          </span>
+        </a>
+      </div>
+    </div>
   </article>
 </Layout>
 
@@ -86,5 +138,21 @@ const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
     padding: 1em;
     border-radius: 0.5em;
     overflow-x: auto;
+  }
+
+  .dark .prose h1,
+  .dark .prose h2,
+  .dark .prose h3,
+  .dark .prose h4 {
+    color: #f7fafc;
+  }
+
+  .dark .prose blockquote {
+    border-left-color: #4a5568;
+    color: #e2e8f0;
+  }
+
+  .dark .prose code {
+    background-color: #2d3748;
   }
 </style> 

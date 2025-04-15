@@ -1,22 +1,242 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Astro Blog</title>
 	</head>
-	<body>
-		<slot />
+	<body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+		<header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700 fixed w-full top-0 z-50">
+			<nav class="container mx-auto px-4 py-4">
+				<div class="flex justify-between items-center">
+					<a href="/" class="text-2xl font-bold">HOME</a>
+					<div class="hidden lg:flex items-center space-x-8">
+						<a href="/learning" class="hover:text-blue-500">학습목록</a>
+						<a href="/graphic-view" class="hover:text-blue-500">GraphicView</a>
+						
+						<!-- 개발 드롭다운 -->
+						<div class="relative group">
+							<button class="flex items-center hover:text-blue-500">
+								개발
+								<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+								</svg>
+							</button>
+							<div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+								<a href="/dev/java" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">JAVA</a>
+								<a href="/dev/python" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Python</a>
+							</div>
+						</div>
+
+						<!-- 게임/메타버스 드롭다운 -->
+						<div class="relative group">
+							<button class="flex items-center hover:text-blue-500">
+								게임/메타버스
+								<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+								</svg>
+							</button>
+							<div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+								<a href="/game/unity" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Unity</a>
+								<a href="/game/blender" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Blender</a>
+								<a href="/game/vr" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">VR/AR/XR</a>
+								<a href="/game/engage" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Engage</a>
+								<a href="/game/hmd" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">HMD</a>
+							</div>
+						</div>
+
+						<!-- AI 활용 드롭다운 -->
+						<div class="relative group">
+							<button class="flex items-center hover:text-blue-500">
+								AI 활용
+								<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+								</svg>
+							</button>
+							<div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+								<a href="/ai/image" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">이미지생성</a>
+								<a href="/ai/video" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">영상생성/편집</a>
+								<a href="/ai/nocode" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">노코드 개발</a>
+								<a href="/ai/research" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">리서치</a>
+								<a href="/ai/design" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">디자인생성</a>
+								<a href="/ai/model" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">AI 모델</a>
+							</div>
+						</div>
+
+						<!-- 데이터분석 드롭다운 -->
+						<div class="relative group">
+							<button class="flex items-center hover:text-blue-500">
+								데이터분석
+								<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+								</svg>
+							</button>
+							<div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+								<a href="/data/ml" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Machine Learning</a>
+								<a href="/data/dl" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">Deep Learning</a>
+							</div>
+						</div>
+
+						<!-- DB 드롭다운 -->
+						<div class="relative group">
+							<button class="flex items-center hover:text-blue-500">
+								DB
+								<svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+								</svg>
+							</button>
+							<div class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-800 rounded-md shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+								<a href="/db/sql" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">SQL</a>
+								<a href="/db/mysql" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700">MySQL</a>
+							</div>
+						</div>
+
+						<a href="/output" class="hover:text-blue-500">OUTPUT</a>
+						<a href="/etc" class="hover:text-blue-500">기타</a>
+					</div>
+
+					<div class="flex items-center gap-4">
+						<!-- 모바일 메뉴 버튼 -->
+						<button id="menu-toggle" class="lg:hidden p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/>
+							</svg>
+						</button>
+						<!-- 다크모드 토글 -->
+						<button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+							</svg>
+						</button>
+					</div>
+				</div>
+			</nav>
+		</header>
+
+		<!-- 모바일 메뉴 -->
+		<div id="mobile-menu" class="lg:hidden fixed inset-0 z-40 hidden">
+			<div class="fixed inset-0 bg-black bg-opacity-50"></div>
+			<div class="fixed top-0 right-0 w-64 h-full bg-white dark:bg-gray-800 transform transition-transform duration-200 ease-in-out translate-x-full">
+				<div class="p-4">
+					<div class="flex justify-end">
+						<button id="close-menu" class="p-2 hover:bg-gray-200 dark:hover:bg-gray-700 rounded">
+							<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+								<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+							</svg>
+						</button>
+					</div>
+					<nav class="mt-4">
+						<ul class="space-y-2">
+							<li><a href="/learning" class="block py-2 hover:text-blue-500">학습목록</a></li>
+							<li><a href="/graphic-view" class="block py-2 hover:text-blue-500">GraphicView</a></li>
+							<li><a href="/dev/java" class="block py-2 hover:text-blue-500">JAVA</a></li>
+							<li><a href="/dev/python" class="block py-2 hover:text-blue-500">Python</a></li>
+							<li><a href="/game/unity" class="block py-2 hover:text-blue-500">Unity</a></li>
+							<li><a href="/game/blender" class="block py-2 hover:text-blue-500">Blender</a></li>
+							<li><a href="/game/vr" class="block py-2 hover:text-blue-500">VR/AR/XR</a></li>
+							<li><a href="/game/engage" class="block py-2 hover:text-blue-500">Engage</a></li>
+							<li><a href="/game/hmd" class="block py-2 hover:text-blue-500">HMD</a></li>
+							<li><a href="/ai/image" class="block py-2 hover:text-blue-500">이미지생성</a></li>
+							<li><a href="/ai/video" class="block py-2 hover:text-blue-500">영상생성/편집</a></li>
+							<li><a href="/ai/nocode" class="block py-2 hover:text-blue-500">노코드 개발</a></li>
+							<li><a href="/ai/research" class="block py-2 hover:text-blue-500">리서치</a></li>
+							<li><a href="/ai/design" class="block py-2 hover:text-blue-500">디자인생성</a></li>
+							<li><a href="/ai/model" class="block py-2 hover:text-blue-500">AI 모델</a></li>
+							<li><a href="/data/ml" class="block py-2 hover:text-blue-500">Machine Learning</a></li>
+							<li><a href="/data/dl" class="block py-2 hover:text-blue-500">Deep Learning</a></li>
+							<li><a href="/db/sql" class="block py-2 hover:text-blue-500">SQL</a></li>
+							<li><a href="/db/mysql" class="block py-2 hover:text-blue-500">MySQL</a></li>
+							<li><a href="/output" class="block py-2 hover:text-blue-500">OUTPUT</a></li>
+							<li><a href="/etc" class="block py-2 hover:text-blue-500">기타</a></li>
+						</ul>
+					</nav>
+				</div>
+			</div>
+		</div>
+
+		<main class="container mx-auto px-4 pt-24">
+			<slot />
+		</main>
+
+		<footer class="container mx-auto px-4 py-8 mt-16 border-t border-gray-200 dark:border-gray-700">
+			<div class="text-center text-sm">
+				<p>© 2024 Astro Blog. All rights reserved.</p>
+			</div>
+		</footer>
 	</body>
 </html>
 
 <style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
+	:root {
+		--astro-code-color-text: #24292e;
+		--astro-code-color-background: #f6f8fa;
+		--astro-code-token-constant: #005cc5;
+		--astro-code-token-string: #032f62;
+		--astro-code-token-comment: #6a737d;
+		--astro-code-token-keyword: #d73a49;
+		--astro-code-token-parameter: #24292e;
+		--astro-code-token-function: #6f42c1;
+		--astro-code-token-string-expression: #032f62;
+		--astro-code-token-punctuation: #24292e;
+		--astro-code-token-link: #032f62;
+	}
+
+	.dark {
+		--astro-code-color-text: #e1e4e8;
+		--astro-code-color-background: #24292e;
+		--astro-code-token-constant: #79b8ff;
+		--astro-code-token-string: #9ecbff;
+		--astro-code-token-comment: #6a737d;
+		--astro-code-token-keyword: #f97583;
+		--astro-code-token-parameter: #e1e4e8;
+		--astro-code-token-function: #b392f0;
+		--astro-code-token-string-expression: #9ecbff;
+		--astro-code-token-punctuation: #e1e4e8;
+		--astro-code-token-link: #9ecbff;
 	}
 </style>
+
+<script>
+	// 다크 모드 토글
+	const themeToggle = document.getElementById('theme-toggle');
+	const prefersDark = window.matchMedia('(prefers-color-scheme: dark)');
+	const currentTheme = localStorage.getItem('theme');
+
+	if (currentTheme === 'dark' || (!currentTheme && prefersDark.matches)) {
+		document.documentElement.classList.add('dark');
+	}
+
+	themeToggle?.addEventListener('click', () => {
+		document.documentElement.classList.toggle('dark');
+		localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'dark' : 'light');
+	});
+
+	// 모바일 메뉴 토글
+	const menuToggle = document.getElementById('menu-toggle');
+	const mobileMenu = document.getElementById('mobile-menu');
+	const closeMenu = document.getElementById('close-menu');
+
+	menuToggle?.addEventListener('click', () => {
+		mobileMenu?.classList.remove('hidden');
+		const mobileMenuContent = mobileMenu?.querySelector('div:last-child');
+		mobileMenuContent?.classList.remove('translate-x-full');
+	});
+
+	closeMenu?.addEventListener('click', () => {
+		const mobileMenuContent = mobileMenu?.querySelector('div:last-child');
+		mobileMenuContent?.classList.add('translate-x-full');
+		setTimeout(() => {
+			mobileMenu?.classList.add('hidden');
+		}, 200);
+	});
+
+	mobileMenu?.querySelector('div:first-child')?.addEventListener('click', () => {
+		const mobileMenuContent = mobileMenu?.querySelector('div:last-child');
+		mobileMenuContent?.classList.add('translate-x-full');
+		setTimeout(() => {
+			mobileMenu?.classList.add('hidden');
+		}, 200);
+	});
+</script>
