@@ -7,8 +7,7 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro",
-    "deploy": "vercel deploy --prod"
+    "astro": "astro"
   },
   "dependencies": {
     "@astrojs/mdx": "^2.1.1",

@@ -2,7 +2,19 @@
   "framework": "astro",
   "buildCommand": "npm run build",
   "devCommand": "npm run dev",
-  "outputDirectory": "dist",
+  "outputDirectory": ".vercel/output",
   "installCommand": "npm install",
-  "regions": ["icn1"]
+  "regions": ["icn1"],
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/api/server.js"
+    }
+  ]
 } 
