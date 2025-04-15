@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+
+const posts = await getCollection('posts', ({ data }) => {
+	return !data.draft;
+});
+
+// 날짜순으로 정렬하되, 날짜가 없는 경우 처리
+posts.sort((a, b) => {
+	const dateA = a.data.pubDate ? new Date(a.data.pubDate).getTime() : 0;
+	const dateB = b.data.pubDate ? new Date(b.data.pubDate).getTime() : 0;
+	return dateB - dateA;
+});
+---
+
+<Layout>
+	<main class="max-w-4xl mx-auto px-4 py-8">
+		<h1 class="text-4xl font-bold mb-8">블로그</h1>
+		<div class="space-y-8">
+			{posts.map(post => (
+				<article class="border-b pb-8">
+					<h2 class="text-2xl font-bold mb-2">
+						<a href={`/posts/${post.slug}`} class="hover:text-blue-600">
+							{post.data.title}
+						</a>
+					</h2>
+					{post.data.description && (
+						<p class="text-gray-600 mb-2">{post.data.description}</p>
+					)}
+					<div class="text-sm text-gray-500">
+						<time datetime={post.data.pubDate?.toISOString()}>
+							{post.data.pubDate?.toLocaleDateString('ko-KR')}
+						</time>
+					</div>
+					{post.data.tags && post.data.tags.length > 0 && (
+						<div class="flex gap-2 mt-2">
+							{post.data.tags.map(tag => (
+								<span class="bg-gray-100 px-2 py-1 rounded-full text-sm">
+									{tag}
+								</span>
+							))}
+						</div>
+					)}
+				</article>
+			))}
+		</div>
+	</main>
+</Layout>

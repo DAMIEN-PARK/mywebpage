@@ -1,0 +1,21 @@
+{
+  "name": "astro-blog",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/mdx": "^2.1.1",
+    "@astrojs/sitemap": "^3.0.5",
+    "@astrojs/tailwind": "^5.1.0",
+    "@astrojs/vercel": "^7.3.6",
+    "@tailwindcss/typography": "^0.5.10",
+    "astro": "^4.2.1",
+    "tailwindcss": "^3.4.1"
+  }
+}

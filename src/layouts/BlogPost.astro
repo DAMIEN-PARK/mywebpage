@@ -1,0 +1,90 @@
+---
+import Layout from './Layout.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  pubDate: Date;
+  updatedDate?: Date;
+  tags?: string[];
+}
+
+const { title, description, pubDate, updatedDate, tags = [] } = Astro.props;
+---
+
+<Layout>
+  <article class="prose prose-lg mx-auto px-4 py-8">
+    <div class="mb-8">
+      <h1 class="text-4xl font-bold mb-2">{title}</h1>
+      {description && <p class="text-gray-600">{description}</p>}
+      <div class="text-sm text-gray-500">
+        <time datetime={pubDate.toISOString()}>
+          {pubDate.toLocaleDateString('ko-KR')}
+        </time>
+        {updatedDate && (
+          <span>
+            · 수정됨: 
+            <time datetime={updatedDate.toISOString()}>
+              {updatedDate.toLocaleDateString('ko-KR')}
+            </time>
+          </span>
+        )}
+      </div>
+      {tags.length > 0 && (
+        <div class="flex gap-2 mt-2">
+          {tags.map(tag => (
+            <span class="bg-gray-100 px-2 py-1 rounded-full text-sm">
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+    </div>
+    <slot />
+  </article>
+</Layout>
+
+<style>
+  .prose {
+    max-width: 65ch;
+  }
+  
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    color: #1a202c;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+
+  .prose p {
+    margin-bottom: 1.5em;
+  }
+
+  .prose ul,
+  .prose ol {
+    margin-left: 1.5em;
+    margin-bottom: 1.5em;
+  }
+
+  .prose blockquote {
+    border-left: 4px solid #e2e8f0;
+    padding-left: 1em;
+    color: #4a5568;
+  }
+
+  .prose code {
+    background-color: #f7fafc;
+    padding: 0.2em 0.4em;
+    border-radius: 0.2em;
+  }
+
+  .prose pre {
+    background-color: #2d3748;
+    color: #f7fafc;
+    padding: 1em;
+    border-radius: 0.5em;
+    overflow-x: auto;
+  }
+</style> 
